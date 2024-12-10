@@ -1,0 +1,30 @@
+<div class="flex">
+  <div class="bg-yellow-200 p-2 w-full">
+    <h1 class="my-4 text-xl font-bold">Core Form</h1>
+    <.form for={@form} phx-change="validate" phx-target={@myself}>
+      <div class="py-4">
+        <.core_input
+          type="select"
+          field={@form[:main_id]}
+          options={main_options()}
+          prompt="Select main..."
+          label="Main"
+        />
+      </div>
+      <div class="py-4">
+        <.core_input
+          type="select"
+          field={@form[:dependent_id]}
+          options={dependent_options_for(@form[:main_id].value)}
+          prompt="Select dependenet"
+          label="Dependent"
+        />
+      </div>
+    </.form>
+  </div>
+
+  <pre class="text-xs w-full p-2">
+main_id: <%= inspect @form[:main_id].value %>
+dependent_id: <%= inspect @form[:dependent_id].value %>
+</pre>
+</div>
